@@ -58,40 +58,30 @@
       :else
       (error "I don't know where to get" ingredient))))
 
-(def load-up-amount [ingredient quantity]
+(defn load-up-amount [ingredient quantity]
   (dotimes [count quantity]
-    (load-up ingredient))
+    (load-up ingredient)))
 
-def unload-amount [ingredient quantity]
+(defn unload-amount [ingredient quantity]
   (dotimes [count quantity]
     (unload ingredient)))
 
 (defn fetch-list [shopping-list]
   (go-to :pantry)
-  (when (contains? shopping-list :flour)
-    (load-up-amount :flour (get shopping-list :flour)))
-  (when (contains? shopping-list :sugar)
-    (load-up-amount :sugar (get shopping-list :sugar)))
+    (load-up-amount :flour (:flour shopping-list 0))
+    (load-up-amount :sugar (:sugar shopping-list 0))
 
   (go-to :fridge)
-  (when (contains? shopping-list :milk)
-    (load-up-amount :milk (get shopping-list :milk)))
-  (when (contains? shopping-list :egg)
-    (load-up-amount :egg (get shopping-list :egg)))
-  (when (contains? shopping-list :butter)
-    (load-up-amount :butter (get shopping-list :butter)))
+    (load-up-amount :milk (:milk shopping-list 0))
+    (load-up-amount :egg (:egg shopping-list 0))
+    (load-up-amount :butter (:butter shopping-list 0))
 
   (go-to :prep-area)
-  (when (contains? shopping-list :flour)
-    (unload-amount :flour (get shopping-list :flour)))
-  (when (contains? shopping-list :sugar)
-    (unload-amount :sugar (get shopping-list :sugar)))
-  (when (contains? shopping-list :milk)
-    (unload-amount :milk (get shopping-list :milk)))
-  (when (contains? shopping-list :egg)
-    (unload-amount :egg (get shopping-list :egg)))
-  (when (contains? shopping-list :butter)
-    (unload-amount :butter (get shopping-list :butter))))
+    (unload-amount :flour (:flour shopping-list 0))
+    (unload-amount :sugar (:sugar shopping-list 0))
+    (unload-amount :milk (:milk shopping-list 0))
+    (unload-amount :egg (:egg shopping-list 0))
+    (unload-amount :butter (:butter shopping-list 0)))
 
 (defn add-egg []
   (grab :egg)
