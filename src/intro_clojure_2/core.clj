@@ -214,6 +214,11 @@
   (into {} (for [[key quantity] ingredients]
               [key (* n quantity)] )))
 
+(defn order->ingredients [order]
+  (add-ingredients
+    (multiply-ingredients {:egg 2 :flour 2 :milk 1 :sugar 1} (:cake (:items order) 0))
+    (multiply-ingredients {:egg 1 :flour 1 :butter 1 :sugar 1} (:cookies (:items order) 0))))
+
 (defn day-at-the-bakery []
   (doseq [order (get-morning-orders)]
     (dotimes [count (:cake (:items order) 0)]
