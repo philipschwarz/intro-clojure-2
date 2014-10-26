@@ -1,0 +1,13 @@
+Exercise 5 answers:
+
+X5 will make many trips to the pantry and fridge.
+X5 should make one trip before baking.
+
+X5 will deliver a receipt for every item.
+X5 should deliver one receipt per order.
+
+We repeat the code for cakes and cookies.
+We should factor out the common code.
+
+We are calling fetch-list on an inline map.
+We should extract the map and name it.
