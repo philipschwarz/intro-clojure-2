@@ -207,6 +207,9 @@
   (bake-pan 30)
   (cool-pan))
 
+(defn add-ingredients [ingredient-map-1 ingredient-map-2]
+  (merge-with + ingredient-map-1 ingredient-map-2))
+
 (defn day-at-the-bakery []
   (doseq [order (get-morning-orders)]
     (dotimes [count (:cake (:items order) 0)]
