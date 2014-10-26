@@ -8,6 +8,10 @@
 (def pantry-ingredients #{:flour :sugar})
 (def fridge-ingredients #{:butter :egg :milk})
 
+(def scooped-ingredients #{:milk :flour :sugar})
+(def squeezed-ingredients #{:egg})
+(def simple-ingredients #{:butter})
+
 (defn from-pantry? [ingredient]
   (contains? pantry-ingredients ingredient))
 
@@ -42,22 +46,13 @@
   (add-to-bowl))
 
 (defn scooped? [ingredient]
-  (cond
-    (= ingredient :milk)
-    true
-    (= ingredient :flour)
-    true
-    (= ingredient :sugar)
-    true
-    :else
-    false))
+  (contains? scooped-ingredients ingredient))
 
 (defn squeezed? [ingredient]
-  (= ingredient :egg))
+  (contains? squeezed-ingredients ingredient))
 
 (defn simple? [ingredient]
-  (= ingredient :butter))
-
+  (contains? simple-ingredients ingredient))
 
 (defn add-eggs [n]
   (dotimes [e n]
