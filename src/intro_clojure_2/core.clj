@@ -1,6 +1,10 @@
 (ns intro-clojure-2.core
   (:use bakery.core))
 
+(defn error [& args]
+  (apply println args)
+  :error)
+
 (defn add-egg []
   (grab :egg)
   (squeeze)
@@ -75,9 +79,7 @@
         (grab ingredient)
         (squeeze)
         (add-to-bowl))
-      (do
-        (println "This function only works on squeezed ingredients. You asked me to squeeze" ingredient)
-        :error))))
+      (error "This function only works on squeezed ingredients. You asked me to squeeze" ingredient))))
 
 (defn add-scooped
   ([ingredient]
@@ -90,9 +92,7 @@
           (scoop ingredient)
           (add-to-bowl))
         (release))
-      (do
-        (println "This function only works on scooped ingredients. You asked me to scoop" ingredient)
-        :error))))
+      (println "This function only works on scooped ingredients. You asked me to scoop" ingredient))))
 
 (defn add-simple
   ([ingredient]
@@ -102,9 +102,7 @@
       (dotimes [i amount]
         (grab ingredient)
         (add-to-bowl))
-      (do
-        (println "This function only works on simple ingredients. You asked me to add" ingredient)
-        :error))))
+      (println "This function only works on simple ingredients. You asked me to add" ingredient))))
 
 (defn add
   ([ingredient]
@@ -121,9 +119,7 @@
       (add-scooped ingredient amount)
 
       :else
-      (do
-        (println "I do not have the ingredient" ingredient)
-        :error))))
+      (println "I do not have the ingredient" ingredient))))
 
 (defn bake-cake []
   (add :egg 2)
