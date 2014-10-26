@@ -5,6 +5,15 @@
   (apply println args)
   :error)
 
+(def pantry-ingredients #{:flour :sugar})
+(def fridge-ingredients #{:butter :egg :milk})
+
+(defn from-pantry? [ingredient]
+  (contains? pantry-ingredients ingredient))
+
+(defn from-fridge? [ingredient]
+  (contains? fridge-ingredients ingredient))
+
 (defn add-egg []
   (grab :egg)
   (squeeze)
