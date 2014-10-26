@@ -58,6 +58,43 @@
       :else
       (error "I don't know where to get" ingredient))))
 
+(defn fetch-list [shopping-list]
+  (go-to :pantry)
+  (when (contains? shopping-list :flour)
+    (dotimes [count (get shopping-list :flour)]
+      (load-up :flour)))
+  (when (contains? shopping-list :sugar)
+    (dotimes [count (get shopping-list :sugar)]
+      (load-up :sugar)))
+
+  (go-to :fridge)
+  (when (contains? shopping-list :milk)
+    (dotimes [count (get shopping-list :milk)]
+      (load-up :milk)))
+  (when (contains? shopping-list :egg)
+    (dotimes [count (get shopping-list :egg)]
+      (load-up :egg)))
+  (when (contains? shopping-list :butter)
+    (dotimes [count (get shopping-list :butter)]
+      (load-up :butter)))
+
+  (go-to :prep-area)
+  (when (contains? shopping-list :flour)
+    (dotimes [count (get shopping-list :flour)]
+      (unload :flour)))
+  (when (contains? shopping-list :sugar)
+    (dotimes [count (get shopping-list :sugar)]
+      (unload :sugar)))
+  (when (contains? shopping-list :milk)
+    (dotimes [count (get shopping-list :milk)]
+      (unload :milk)))
+  (when (contains? shopping-list :egg)
+    (dotimes [count (get shopping-list :egg)]
+      (unload :egg)))
+  (when (contains? shopping-list :butter)
+    (dotimes [count (get shopping-list :butter)]
+      (unload :butter))))
+
 (defn add-egg []
   (grab :egg)
   (squeeze)
