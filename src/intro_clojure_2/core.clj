@@ -210,6 +210,10 @@
 (defn add-ingredients [ingredient-map-1 ingredient-map-2]
   (merge-with + ingredient-map-1 ingredient-map-2))
 
+(defn multiply-ingredients [ingredients n]
+  (into {} (for [[key quantity] ingredients]
+              [key (* n quantity)] )))
+
 (defn day-at-the-bakery []
   (doseq [order (get-morning-orders)]
     (dotimes [count (:cake (:items order) 0)]
